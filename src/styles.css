@@ -1,0 +1,358 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2563eb;
+    --primary-dark: #1e40af;
+    --success-color: #059669;
+    --warning-color: #f59e0b;
+    --danger-color: #dc2626;
+    --bg-light: #f9fafb;
+    --bg-white: #ffffff;
+    --border-color: #e5e7eb;
+    --text-dark: #1f2937;
+    --text-gray: #6b7280;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--text-dark);
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 10px;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.calculator-card {
+    background: var(--bg-white);
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+}
+
+.input-section {
+    margin-bottom: 30px;
+}
+
+.input-section label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.input-section input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.input-section input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.deductions-section {
+    margin-bottom: 30px;
+    border-top: 2px solid var(--border-color);
+    padding-top: 30px;
+}
+
+.deductions-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+}
+
+.deduction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: var(--bg-light);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.deduction-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+}
+
+.deduction-label .name {
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.deduction-label .rate {
+    background: var(--primary-color);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 12px;
+    cursor: pointer;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: relative;
+    width: 42px;
+    height: 24px;
+    background-color: #cbd5e1;
+    border-radius: 999px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    top: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.toggle input:checked + .toggle-slider {
+    background-color: var(--primary-color);
+}
+
+.toggle input:checked + .toggle-slider::before {
+    transform: translateX(18px);
+}
+
+.deduction-value {
+    font-weight: 600;
+    color: var(--danger-color);
+    font-size: 1.1rem;
+    min-width: 120px;
+    text-align: right;
+}
+
+.deduction-input {
+    flex: 1;
+    text-align: right;
+}
+
+.deduction-input input {
+    width: 150px;
+    padding: 8px 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    text-align: right;
+}
+
+.deduction-input input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.summary-section {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border: 2px solid var(--border-color);
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.summary-item.gross {
+    color: var(--text-dark);
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.summary-item.total-deductions {
+    color: var(--danger-color);
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.summary-item.net {
+    color: var(--success-color);
+    padding-top: 15px;
+    font-size: 1.3rem;
+}
+
+.breakdown-section {
+    background: var(--bg-light);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.breakdown-section h3 {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+}
+
+.breakdown-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.breakdown-table tr {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.breakdown-table tr:last-child {
+    border-bottom: none;
+}
+
+.breakdown-table td {
+    flex: 1;
+}
+
+.breakdown-table td:last-child {
+    text-align: right;
+    font-weight: 600;
+}
+
+.breakdown-table tr.deduction-row td:last-child {
+    color: var(--danger-color);
+}
+
+.breakdown-table tr.net-row {
+    background: var(--primary-color);
+    color: white;
+    padding: 15px;
+    margin: 10px -20px -20px -20px;
+    border-radius: 0 0 8px 8px;
+}
+
+.breakdown-table tr.net-row td {
+    color: white;
+}
+
+.reset-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--text-gray);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.reset-btn:hover {
+    background: var(--text-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.reset-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .calculator-card {
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .deduction-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .deduction-label {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .deduction-label .rate {
+        margin-left: 0;
+        margin-top: 8px;
+        align-self: flex-start;
+    }
+
+    .deduction-value,
+    .deduction-input {
+        width: 100%;
+        text-align: left;
+    }
+
+    .deduction-input input {
+        width: 100%;
+    }
+
+    .summary-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .summary-item span:last-child {
+        align-self: flex-start;
+        margin-top: 8px;
+    }
+}

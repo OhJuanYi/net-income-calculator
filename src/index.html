@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Net Income Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Monthly Net Income Calculator</h1>
+        <p class="subtitle">Calculate your monthly net income after deductions</p>
+        
+        <div class="calculator-card">
+            <div class="input-section">
+                <label for="grossIncome">Monthly Gross Income (RM):</label>
+                <input 
+                    type="number" 
+                    id="grossIncome" 
+                    placeholder="Enter your monthly gross income" 
+                    min="0" 
+                    step="0.01"
+                >
+            </div>
+
+            <div class="input-section">
+                <label for="nonTaxableIncome">Monthly Non-Taxable Income (RM):</label>
+                <input
+                    type="number"
+                    id="nonTaxableIncome"
+                    placeholder="Enter monthly non-taxable income"
+                    min="0"
+                    step="0.01"
+                >
+            </div>
+
+            <div class="deductions-section">
+                <h2>Mandatory Deductions</h2>
+                
+                <div class="deduction-item">
+                    <div class="deduction-label">
+                        <span class="name">EPF (Employees Provident Fund)</span>
+                        <span class="rate">11%</span>
+                    </div>
+                    <div class="deduction-value" id="epfAmount">RM 0.00</div>
+                </div>
+
+                <div class="deduction-item">
+                    <div class="deduction-label">
+                        <span class="name">SOCSO (Social Security Organisation)</span>
+                    </div>
+                    <div class="deduction-value" id="socsoAmount">RM 0.00</div>
+                </div>
+
+                <div class="deduction-item">
+                    <div class="deduction-label">
+                        <span class="name">EIS (Employment Insurance System)</span>
+                    </div>
+                    <div class="deduction-value" id="eisAmount">RM 0.00</div>
+                </div>
+
+                <div class="deduction-item">
+                    <div class="deduction-label">
+                        <span class="name">PCB (Personal Income Tax)</span>
+                    </div>
+                    <div class="deduction-value" id="pcbAmount">RM 0.00</div>
+                </div>
+
+                <div class="deduction-item">
+                    <div class="deduction-label">
+                        <span class="name">SKBBK</span>
+                        <label class="toggle" aria-label="Toggle SKBBK deduction">
+                            <input type="checkbox" id="skbbkToggle" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="deduction-value" id="skbbkAmount">RM 0.00</div>
+                </div>
+            </div>
+
+            <div class="summary-section">
+                <div class="summary-item gross">
+                    <span>Gross Income:</span>
+                    <span id="grossIncomeDisplay">RM 0.00</span>
+                </div>
+
+                <div class="summary-item total-deductions">
+                    <span>Total Deductions:</span>
+                    <span id="totalDeductionsDisplay">RM 0.00</span>
+                </div>
+
+                <div class="summary-item net">
+                    <span>Net Income:</span>
+                    <span id="netIncomeDisplay">RM 0.00</span>
+                </div>
+            </div>
+
+            <div class="breakdown-section">
+                <h3>Breakdown Summary</h3>
+                <table class="breakdown-table">
+                    <tr>
+                        <td>Gross Income</td>
+                        <td id="breakdownGross">RM 0.00</td>
+                    </tr>
+                    <tr class="deduction-row">
+                        <td>- EPF</td>
+                        <td id="breakdownEPF">RM 0.00</td>
+                    </tr>
+                    <tr class="deduction-row">
+                        <td>- SOCSO</td>
+                        <td id="breakdownSOCSO">RM 0.00</td>
+                    </tr>
+                    <tr class="deduction-row">
+                        <td>- EIS</td>
+                        <td id="breakdownEIS">RM 0.00</td>
+                    </tr>
+                    <tr class="deduction-row">
+                        <td>- PCB</td>
+                        <td id="breakdownPCB">RM 0.00</td>
+                    </tr>
+                    <tr class="deduction-row">
+                        <td>- SKBBK</td>
+                        <td id="breakdownSKBBK">RM 0.00</td>
+                    </tr>
+                    <tr class="net-row">
+                        <td><strong>Net Income</strong></td>
+                        <td id="breakdownNet"><strong>RM 0.00</strong></td>
+                    </tr>
+                </table>
+            </div>
+
+            <button class="reset-btn" onclick="resetCalculator()">Reset</button>
+        </div>
+    </div>
+
+    <script src="rates/eis-rates.js"></script>
+    <script src="rates/socso-rates.js"></script>
+    <script src="rates/tax-brackets.js"></script>
+    <script src="rates/skbbk-rates.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
